@@ -1,1 +1,1 @@
-# A visualizer for the [https://github.com/maxkunes/bean](bean) language ast.
+### A visualizer for the [bean](https://github.com/maxkunes/bean) language ast.
