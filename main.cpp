@@ -10,6 +10,9 @@
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 #include <tchar.h>
+#include <string>
+#include <fstream>
+#include <streambuf>
 
 // Data
 static ID3D11Device * g_pd3dDevice = NULL;
@@ -103,7 +106,12 @@ int main(int, char**)
 		ImGui::NewFrame();
 
 
-		visualize_ast("var x = 7 * (6/3 + 55) ^ 12");
+		std::ifstream t("C:\\Users\\madmin\\Documents\\Github\\bean\\lang.cs");
+		
+		const std::string str((std::istreambuf_iterator<char>(t)),
+			std::istreambuf_iterator<char>());
+		
+		visualize_ast(str);
 
 		
 		ImGui::Render();

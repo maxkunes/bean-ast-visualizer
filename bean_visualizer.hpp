@@ -3,7 +3,7 @@
 #include <iostream>
 #include <bean_ast.hpp>
 
-float rootX = 2560.0 / 3.0;
+float rootX = 2560.0 / 2;
 float rootY = 200;
 
 std::string get_type(const std::shared_ptr<ast>& tree)
@@ -16,9 +16,9 @@ inline void draw_ast(const std::shared_ptr<ast>& tree, const float oldX, const f
 	std::stringstream stream;
 	stream << get_type(tree) << std::endl;
 
-	if(tree->get_value().is_valid())
+	if(!tree->get_identifier().empty())
 	{
-		stream << "Value : " << tree->get_value().get_text();
+		stream << "Identifier : " << tree->get_identifier();
 	}
 	
 	std::string text = stream.str();
@@ -29,9 +29,9 @@ inline void draw_ast(const std::shared_ptr<ast>& tree, const float oldX, const f
 	
 	ImGui::GetOverlayDrawList()->AddText(ImVec2(curX - textSize.x/2, curY - textSize.y/2), ImColor(255, 255, 255, 255), text.c_str());
 
-	if (tree->get_left())
+	if (tree->has_left())
 		draw_ast(tree->get_left(), curX, curY + textSize.y * 1.5, curX - 400, curY + 200);
-	if (tree->get_right())
+	if (tree->has_right())
 		draw_ast(tree->get_right(), curX, curY + textSize.y * 1.5, curX + 400, curY + 200);
 }
 
